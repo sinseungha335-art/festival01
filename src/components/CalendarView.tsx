@@ -59,19 +59,19 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   const emptyPrefixSlots = Array.from({ length: startDayOfWeek }, (_, i) => i);
 
   return (
-    <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-4 sm:p-6 shadow-xl space-y-6">
+    <div className="bg-white border-2 border-[#1A1A1A] rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] space-y-6">
       
       {/* Month Navigator Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+          <div className="w-10 h-10 rounded-xl bg-[#1A1A1A] text-[#FF5C35] flex items-center justify-center border-2 border-[#1A1A1A]">
             <CalendarIcon className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-white">
-              {currentYear}년 {currentMonth}월 축제 달력
+            <h3 className="text-base font-black text-[#1A1A1A] uppercase tracking-wider">
+              {currentYear}년 {currentMonth}월 FESTIVAL CALENDAR
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs font-bold text-[#1A1A1A]/70">
               해당 월에 개최되는 부산의 주요 축제 일정 ({monthFestivals.length}개)
             </p>
           </div>
@@ -80,19 +80,19 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={prevMonth}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"
+            className="p-2 rounded-xl bg-[#FAF7F2] hover:bg-[#FF5C35] hover:text-white text-[#1A1A1A] border-2 border-[#1A1A1A] transition shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
             title="이전 달"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
-          <span className="text-xs font-bold px-3 py-1 bg-slate-800 rounded-lg text-cyan-300">
+          <span className="text-xs font-black px-3.5 py-1.5 bg-[#1A1A1A] text-white rounded-xl border border-[#1A1A1A]">
             {currentYear}. {currentMonth < 10 ? `0${currentMonth}` : currentMonth}
           </span>
 
           <button
             onClick={nextMonth}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition"
+            className="p-2 rounded-xl bg-[#FAF7F2] hover:bg-[#FF5C35] hover:text-white text-[#1A1A1A] border-2 border-[#1A1A1A] transition shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
             title="다음 달"
           >
             <ChevronRight className="w-4 h-4" />
@@ -101,22 +101,22 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
       </div>
 
       {/* Days of Week Bar */}
-      <div className="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-bold text-slate-400 border-b border-slate-800 pb-2">
-        <span className="text-rose-400">일</span>
-        <span>월</span>
-        <span>화</span>
-        <span>수</span>
-        <span>목</span>
-        <span>금</span>
-        <span className="text-cyan-400">토</span>
+      <div className="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-black text-[#1A1A1A] border-b-2 border-[#1A1A1A] pb-3 uppercase tracking-wider">
+        <span className="text-[#FF5C35]">SUN (일)</span>
+        <span>MON (월)</span>
+        <span>TUE (화)</span>
+        <span>WED (수)</span>
+        <span>THU (목)</span>
+        <span>FRI (금)</span>
+        <span className="text-[#FF5C35]">SAT (토)</span>
       </div>
 
       {/* Calendar Grid Matrix */}
-      <div className="grid grid-cols-7 gap-1 sm:gap-2">
+      <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
         
         {/* Empty slots for offset */}
         {emptyPrefixSlots.map((_, idx) => (
-          <div key={`empty-${idx}`} className="min-h-[90px] sm:min-h-[110px] rounded-xl bg-slate-950/30 border border-slate-900/50" />
+          <div key={`empty-${idx}`} className="min-h-[90px] sm:min-h-[110px] rounded-xl bg-[#FAF7F2]/50 border-2 border-[#1A1A1A]/20" />
         ))}
 
         {/* Day Cells */}
@@ -139,9 +139,9 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
           return (
             <div
               key={day}
-              className="min-h-[90px] sm:min-h-[110px] p-1.5 sm:p-2 rounded-xl bg-slate-950/60 border border-slate-800/80 flex flex-col justify-between hover:border-slate-700 transition"
+              className="min-h-[90px] sm:min-h-[110px] p-2 sm:p-2.5 rounded-xl bg-[#FAF7F2] border-2 border-[#1A1A1A] flex flex-col justify-between hover:bg-white transition shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
             >
-              <span className="text-xs font-bold text-slate-300">
+              <span className="text-xs font-black text-[#1A1A1A]">
                 {day}
               </span>
 
@@ -150,7 +150,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                   <button
                     key={fest.id}
                     onClick={() => onSelectFestival(fest)}
-                    className="w-full text-left px-1.5 py-0.5 rounded text-[10px] font-bold bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 transition line-clamp-1 border border-cyan-500/30"
+                    className="w-full text-left px-2 py-1 rounded text-[10px] font-black bg-[#FF5C35] text-white hover:bg-[#1A1A1A] transition line-clamp-1 border border-[#1A1A1A]"
                     title={fest.title}
                   >
                     {fest.title}
@@ -158,8 +158,8 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 ))}
 
                 {dayFestivals.length > 2 && (
-                  <div className="text-[9px] text-slate-500 text-center font-medium">
-                    +{dayFestivals.length - 2}개 더보기
+                  <div className="text-[9px] text-[#1A1A1A]/70 text-center font-black">
+                    +{dayFestivals.length - 2} MORE
                   </div>
                 )}
               </div>
@@ -170,4 +170,5 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
 
     </div>
   );
+
 };

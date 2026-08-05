@@ -158,7 +158,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#1A1A1A] font-sans selection:bg-[#FF5C35] selection:text-white">
       
       {/* Top Sticky Navbar */}
       <Navbar
@@ -175,18 +175,18 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         
         {/* Error Notification */}
         {error && (
-          <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between text-amber-200 text-xs">
+          <div className="bg-[#FFF4E5] border-2 border-[#1A1A1A] rounded-xl p-4 flex items-center justify-between text-[#1A1A1A] text-xs font-bold shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]">
             <div className="flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+              <AlertTriangle className="w-4 h-4 text-[#FF5C35] shrink-0" />
               <span>{error}</span>
             </div>
             <button
               onClick={fetchFestivals}
-              className="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold rounded-lg transition"
+              className="px-3 py-1.5 bg-[#1A1A1A] text-white hover:bg-[#FF5C35] font-extrabold text-xs rounded-lg transition uppercase tracking-wider"
             >
               다시 시도
             </button>
@@ -206,45 +206,45 @@ export default function App() {
 
         {/* Loading Spinner State */}
         {isLoading && festivals.length === 0 ? (
-          <div className="min-h-[300px] flex flex-col items-center justify-center space-y-3 py-12">
-            <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin" />
-            <p className="text-sm font-medium text-slate-400">
-              부산 축제 정보를 불러오는 중입니다...
+          <div className="min-h-[300px] flex flex-col items-center justify-center space-y-3 py-16">
+            <RefreshCw className="w-8 h-8 text-[#FF5C35] animate-spin" />
+            <p className="text-sm font-extrabold uppercase tracking-widest text-[#1A1A1A]">
+              부산 축제 공공데이터를 불러오는 중입니다...
             </p>
           </div>
         ) : (
           /* Main Views (Grid, Map, Calendar) */
           <div>
             {viewMode === 'grid' && (
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {/* Result Summary Bar */}
-                <div className="flex items-center justify-between text-xs text-slate-400 px-1">
-                  <div className="flex items-center gap-1.5">
-                    <Layers className="w-4 h-4 text-cyan-400" />
+                <div className="flex items-center justify-between text-xs font-extrabold uppercase tracking-wider text-[#1A1A1A]/70 px-1 border-b-2 border-[#1A1A1A] pb-2">
+                  <div className="flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-[#FF5C35]" />
                     <span>
-                      조회 결과: <strong className="text-white">{filteredFestivals.length}</strong>개 축제
+                      TOTAL FESTIVALS: <strong className="text-[#1A1A1A] font-black text-sm">{filteredFestivals.length}</strong> ITEMS FOUND
                     </span>
                   </div>
                 </div>
 
                 {filteredFestivals.length === 0 ? (
-                  <div className="bg-slate-900/40 border border-slate-800 rounded-3xl p-12 text-center space-y-3">
-                    <Compass className="w-10 h-10 text-slate-600 mx-auto" />
-                    <h3 className="text-base font-bold text-slate-300">
-                      조건에 맞는 축제를 찾을 수 없습니다
+                  <div className="bg-white border-2 border-[#1A1A1A] rounded-2xl p-12 text-center space-y-4 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
+                    <Compass className="w-12 h-12 text-[#1A1A1A]/40 mx-auto" />
+                    <h3 className="text-lg font-black text-[#1A1A1A] uppercase tracking-wide">
+                      NO MATCHING FESTIVALS FOUND
                     </h3>
-                    <p className="text-xs text-slate-500 max-w-md mx-auto">
-                      다른 구/군이나 월을 선택하시거나 검색어를 확인해보세요.
+                    <p className="text-xs text-[#1A1A1A]/70 max-w-md mx-auto font-medium">
+                      검색어 또는 필터 조건을 변경하여 다시 확인해보세요.
                     </p>
                     <button
                       onClick={resetFilters}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-cyan-400 font-bold text-xs rounded-xl border border-slate-700 transition"
+                      className="px-5 py-2.5 bg-[#FF5C35] text-white hover:bg-[#1A1A1A] font-black text-xs rounded-xl border-2 border-[#1A1A1A] transition shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                     >
-                      필터 전체 초기화
+                      RESET FILTERS
                     </button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {filteredFestivals.map(f => (
                       <FestivalCard
                         key={f.id}
@@ -282,9 +282,9 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500 space-y-2">
-        <p>부산광역시 공공데이터 포털 (apis.data.go.kr) FestivalService 연동</p>
-        <p>© 2026 Busan Festival Explorer. All rights reserved.</p>
+      <footer className="border-t-2 border-[#1A1A1A] bg-[#FAF7F2] py-10 text-center text-xs font-bold text-[#1A1A1A]/70 space-y-2 uppercase tracking-widest">
+        <p>BUSAN PUBLIC DATA PORTAL (DATA.GO.KR) FESTIVAL API INTEGRATED</p>
+        <p>© 2026 BUSAN FESTIVAL EXPLORER. VERCEL READY.</p>
       </footer>
 
       {/* Detail Modal */}
@@ -297,4 +297,5 @@ export default function App() {
 
     </div>
   );
+
 }
